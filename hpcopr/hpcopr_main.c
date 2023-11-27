@@ -48,7 +48,7 @@ int tf_loc_flag_var=0;
 int code_loc_flag_var=0;
 int now_crypto_loc_flag_var=0;
 
-char terraform_version_var[16]="";
+char tofu_version_var[16]="";
 char ali_tf_plugin_version_var[16]="";
 char qcloud_tf_plugin_version_var[16]="";
 char aws_tf_plugin_version_var[16]="";

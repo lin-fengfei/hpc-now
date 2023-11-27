@@ -26,7 +26,7 @@ extern int tf_loc_flag_var;
 extern int code_loc_flag_var;
 extern int now_crypto_loc_flag_var;
 
-extern char terraform_version_var[16];
+extern char tofu_version_var[16];
 extern char ali_tf_plugin_version_var[16];
 extern char qcloud_tf_plugin_version_var[16];
 extern char aws_tf_plugin_version_var[16];
@@ -115,6 +115,17 @@ int valid_ver_or_not(char* version_code){
     return 0;
 }
 
+int valid_ver_or_not_tofu(char* version_code){
+    char head[12]="";
+    char tail[12]="";
+    get_seq_string(version_code,'-',1,head);
+    get_seq_string(version_code,'-',2,tail);
+    if(valid_ver_or_not(head)!=0){
+        return 1;
+    }
+    return 0;
+}
+
 int get_vers_md5_vars(void){
     char vers_md5_line[128]="";
     char header[16]="";
@@ -127,7 +138,7 @@ int get_vers_md5_vars(void){
         return 1;
     }
 //    printf("\n\n%s\n\n",vers_md5_line);
-    get_seq_string(vers_md5_line,'\t',1,terraform_version_var);
+    get_seq_string(vers_md5_line,'\t',1,tofu_version_var);
     get_seq_string(vers_md5_line,'\t',2,ali_tf_plugin_version_var);
     get_seq_string(vers_md5_line,'\t',3,qcloud_tf_plugin_version_var);
     get_seq_string(vers_md5_line,'\t',4,aws_tf_plugin_version_var);
@@ -136,7 +147,7 @@ int get_vers_md5_vars(void){
     get_seq_string(vers_md5_line,'\t',7,azrm_tf_plugin_version_var);
     get_seq_string(vers_md5_line,'\t',8,azad_tf_plugin_version_var);
     get_seq_string(vers_md5_line,'\t',9,gcp_tf_plugin_version_var);
-    if(valid_ver_or_not(terraform_version_var)!=0||valid_ver_or_not(ali_tf_plugin_version_var)!=0||valid_ver_or_not(qcloud_tf_plugin_version_var)!=0||valid_ver_or_not(aws_tf_plugin_version_var)!=0||valid_ver_or_not(hw_tf_plugin_version_var)!=0||valid_ver_or_not(bd_tf_plugin_version_var)!=0||valid_ver_or_not(azrm_tf_plugin_version_var)!=0||valid_ver_or_not(azad_tf_plugin_version_var)!=0||valid_ver_or_not(gcp_tf_plugin_version_var)!=0){
+    if(valid_ver_or_not_tofu(tofu_version_var)!=0||valid_ver_or_not(ali_tf_plugin_version_var)!=0||valid_ver_or_not(qcloud_tf_plugin_version_var)!=0||valid_ver_or_not(aws_tf_plugin_version_var)!=0||valid_ver_or_not(hw_tf_plugin_version_var)!=0||valid_ver_or_not(bd_tf_plugin_version_var)!=0||valid_ver_or_not(azrm_tf_plugin_version_var)!=0||valid_ver_or_not(azad_tf_plugin_version_var)!=0||valid_ver_or_not(gcp_tf_plugin_version_var)!=0){
         return 1;
     }
     while(!feof(file_p)){
@@ -352,7 +363,7 @@ int show_vers_md5vars(void){
         return -1;
     }
     printf(GENERAL_BOLD "[ -INFO- ]" RESET_DISPLAY " Versions and md5sum values\n");
-    printf("|  Vers:   Terraform\tAliCloudProvider TencentCloudProvider AWSProvider\n");
+    printf("|  Vers:   openTofu\tAliCloudProvider TencentCloudProvider AWSProvider\n");
     while(fgetline(file_p,vers_and_md5)==0){
         printf("|          %s\n",vers_and_md5);
     }
@@ -564,7 +575,7 @@ int configure_locations(int batch_flag_local){
     if(prompt_to_confirm("ARE YOU SURE ?",CONFIRM_STRING,batch_flag_local)==1){
         return 1;
     }
-    printf("[ LOC1/7 ] Please specify the root location of the terraform binary and providers. \n");
+    printf("[ LOC1/7 ] Please specify the root location of the tofu binary and providers. \n");
     printf("|          You can input " HIGH_CYAN_BOLD "default" RESET_DISPLAY " to use default location below: \n");
     printf("|          -> %s \n",DEFAULT_URL_TF_ROOT);
     printf(GENERAL_BOLD "[ INPUT: ]" RESET_DISPLAY " ");
@@ -580,7 +591,7 @@ int configure_locations(int batch_flag_local){
             strcpy(url_tf_root_var,loc_string);
         }
     }
-    printf("[ LOC2/7 ] Please specify the root location of the terraform templates. \n");
+    printf("[ LOC2/7 ] Please specify the root location of the infra-as-code templates. \n");
     printf("|          You can input " HIGH_CYAN_BOLD "default" RESET_DISPLAY " to use default location below: \n");
     printf("|          -> %s \n",DEFAULT_URL_CODE_ROOT);
     printf(GENERAL_BOLD "[ INPUT: ]" RESET_DISPLAY " ");

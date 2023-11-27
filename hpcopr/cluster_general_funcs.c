@@ -1364,7 +1364,7 @@ int cluster_full_running_or_not(char* workdir){
     return get_compute_node_num(filename_temp,"down");
 }
 
-int terraform_execution(char* tf_exec, char* execution_name, char* workdir, char* crypto_keyfile, int silent_flag){
+int tofu_execution(char* tf_exec, char* execution_name, char* workdir, char* crypto_keyfile, int silent_flag){
     char cmdline[CMDLINE_LENGTH]="";
     char stackdir[DIR_LENGTH]="";
     char tf_realtime_log[FILENAME_LENGTH];
@@ -1393,7 +1393,7 @@ int terraform_execution(char* tf_exec, char* execution_name, char* workdir, char
     system(cmdline);
     if(silent_flag!=0){
         printf(WARN_YELLO_BOLD "[ -WARN- ] Do not terminate this process manually. Max Exec Time: %d s\n",MAXIMUM_WAIT_TIME);
-        printf("|          Command: %s. View log: " RESET_DISPLAY HIGH_GREEN_BOLD "hpcopr viewlog --std\n" RESET_DISPLAY,execution_name);
+        printf("|          Command: %s. View log: " RESET_DISPLAY HIGH_GREEN_BOLD "hpcopr -b viewlog --std\n" RESET_DISPLAY,execution_name);
     }
     if(wait_for_complete(tf_realtime_log,execution_name,tf_error_log,tf_error_log_archive,1)!=0){
         printf(FATAL_RED_BOLD "[ FATAL: ] Failed to operate the cluster. Operation command: %s.\n" RESET_DISPLAY,execution_name);

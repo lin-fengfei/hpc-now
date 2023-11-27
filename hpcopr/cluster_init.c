@@ -487,7 +487,7 @@ int aws_cluster_init(char* cluster_id_input, char* workdir, char* crypto_keyfile
     char secret_file[FILENAME_LENGTH]="";
     char filename_temp[FILENAME_LENGTH]="";
     char user_passwords[FILENAME_LENGTH]="";
-    char* tf_exec=TERRAFORM_EXEC;
+    char* tf_exec=TOFU_EXEC;
     char url_aws_root[LOCATION_LENGTH_EXTENDED]="";
     char access_key[AKSK_LENGTH]="";
     char secret_key[AKSK_LENGTH]="";
@@ -887,12 +887,12 @@ int aws_cluster_init(char* cluster_id_input, char* workdir, char* crypto_keyfile
         insert_lines(filename_temp,"var.cluster_init_scripts",line_temp);*/
     }
     generate_tf_files(stackdir);
-    if(terraform_execution(tf_exec,"init",workdir,crypto_keyfile,0)!=0){
+    if(tofu_execution(tf_exec,"init",workdir,crypto_keyfile,0)!=0){
         return 5;
     }
-    if(terraform_execution(tf_exec,"apply",workdir,crypto_keyfile,1)!=0){
+    if(tofu_execution(tf_exec,"apply",workdir,crypto_keyfile,1)!=0){
         printf(GENERAL_BOLD "[ -INFO- ]" RESET_DISPLAY " Rolling back and exit now ...\n");
-        if(terraform_execution(tf_exec,"destroy",workdir,crypto_keyfile,1)==0){
+        if(tofu_execution(tf_exec,"destroy",workdir,crypto_keyfile,1)==0){
             delete_decrypted_files(workdir,crypto_keyfile);
             clear_if_failed(stackdir,confdir,vaultdir,3);
             printf(GENERAL_BOLD "[ -INFO- ]" RESET_DISPLAY " Successfully rolled back and destroyed the residual resources.\n");
@@ -1012,7 +1012,7 @@ int qcloud_cluster_init(char* cluster_id_input, char* workdir, char* crypto_keyf
     char secret_file[FILENAME_LENGTH]="";
     char filename_temp[FILENAME_LENGTH]="";
     char user_passwords[FILENAME_LENGTH]="";
-    char* tf_exec=TERRAFORM_EXEC;
+    char* tf_exec=TOFU_EXEC;
     char url_qcloud_root[LOCATION_LENGTH_EXTENDED];
     char access_key[AKSK_LENGTH]="";
     char secret_key[AKSK_LENGTH]="";
@@ -1386,12 +1386,12 @@ int qcloud_cluster_init(char* cluster_id_input, char* workdir, char* crypto_keyf
         global_replace(filename_temp,"RUNNING_FLAG","true");
     }
     generate_tf_files(stackdir);
-    if(terraform_execution(tf_exec,"init",workdir,crypto_keyfile,0)!=0){
+    if(tofu_execution(tf_exec,"init",workdir,crypto_keyfile,0)!=0){
         return 5;
     }
-    if(terraform_execution(tf_exec,"apply",workdir,crypto_keyfile,1)!=0){
+    if(tofu_execution(tf_exec,"apply",workdir,crypto_keyfile,1)!=0){
         printf(GENERAL_BOLD "[ -INFO- ]" RESET_DISPLAY " Rolling back and exit now ...\n");
-        if(terraform_execution(tf_exec,"destroy",workdir,crypto_keyfile,1)==0){
+        if(tofu_execution(tf_exec,"destroy",workdir,crypto_keyfile,1)==0){
             delete_decrypted_files(workdir,crypto_keyfile);
             clear_if_failed(stackdir,confdir,vaultdir,3);
             printf(GENERAL_BOLD "[ -INFO- ]" RESET_DISPLAY " Successfully rolled back and destroyed the residual resources.\n");
@@ -1500,7 +1500,7 @@ int alicloud_cluster_init(char* cluster_id_input, char* workdir, char* crypto_ke
     char secret_file[FILENAME_LENGTH]="";
     char filename_temp[FILENAME_LENGTH]="";
     char user_passwords[FILENAME_LENGTH]="";
-    char* tf_exec=TERRAFORM_EXEC;
+    char* tf_exec=TOFU_EXEC;
     char url_alicloud_root[LOCATION_LENGTH_EXTENDED]="";
     char access_key[AKSK_LENGTH]="";
     char secret_key[AKSK_LENGTH]="";
@@ -1866,12 +1866,12 @@ int alicloud_cluster_init(char* cluster_id_input, char* workdir, char* crypto_ke
         global_replace(filename_temp,"COMPUTE_NODE_N",string_temp);
     }
     generate_tf_files(stackdir);
-    if(terraform_execution(tf_exec,"init",workdir,crypto_keyfile,0)!=0){
+    if(tofu_execution(tf_exec,"init",workdir,crypto_keyfile,0)!=0){
         return 5;
     }
-    if(terraform_execution(tf_exec,"apply",workdir,crypto_keyfile,1)!=0){
+    if(tofu_execution(tf_exec,"apply",workdir,crypto_keyfile,1)!=0){
         printf(GENERAL_BOLD "[ -INFO- ]" RESET_DISPLAY " Rolling back and exit now ...\n");
-        if(terraform_execution(tf_exec,"destroy",workdir,crypto_keyfile,1)==0){
+        if(tofu_execution(tf_exec,"destroy",workdir,crypto_keyfile,1)==0){
             delete_decrypted_files(workdir,crypto_keyfile);
             clear_if_failed(stackdir,confdir,vaultdir,3);
             printf(GENERAL_BOLD "[ -INFO- ]" RESET_DISPLAY " Successfully rolled back and destroyed the residual resources.\n");
@@ -2010,7 +2010,7 @@ int hwcloud_cluster_init(char* cluster_id_input, char* workdir, char* crypto_key
     char secret_file[FILENAME_LENGTH]="";
     char filename_temp[FILENAME_LENGTH]="";
     char user_passwords[FILENAME_LENGTH]="";
-    char* tf_exec=TERRAFORM_EXEC;
+    char* tf_exec=TOFU_EXEC;
     char url_hwcloud_root[LOCATION_LENGTH_EXTENDED];
     char access_key[AKSK_LENGTH]="";
     char secret_key[AKSK_LENGTH]="";
@@ -2391,12 +2391,12 @@ int hwcloud_cluster_init(char* cluster_id_input, char* workdir, char* crypto_key
     }
 
     generate_tf_files(stackdir);
-    if(terraform_execution(tf_exec,"init",workdir,crypto_keyfile,0)!=0){
+    if(tofu_execution(tf_exec,"init",workdir,crypto_keyfile,0)!=0){
         return 5;
     }
-    if(terraform_execution(tf_exec,"apply",workdir,crypto_keyfile,1)!=0){
+    if(tofu_execution(tf_exec,"apply",workdir,crypto_keyfile,1)!=0){
         printf(GENERAL_BOLD "[ -INFO- ]" RESET_DISPLAY " Rolling back and exit now ...\n");
-        if(terraform_execution(tf_exec,"destroy",workdir,crypto_keyfile,1)==0){
+        if(tofu_execution(tf_exec,"destroy",workdir,crypto_keyfile,1)==0){
             delete_decrypted_files(workdir,crypto_keyfile);
             clear_if_failed(stackdir,confdir,vaultdir,3);
             printf(GENERAL_BOLD "[ -INFO- ]" RESET_DISPLAY " Successfully rolled back and destroyed the residual resources.\n");
@@ -2505,7 +2505,7 @@ int baiducloud_cluster_init(char* cluster_id_input, char* workdir, char* crypto_
     char secret_file[FILENAME_LENGTH]="";
     char filename_temp[FILENAME_LENGTH]="";
     char user_passwords[FILENAME_LENGTH]="";
-    char* tf_exec=TERRAFORM_EXEC;
+    char* tf_exec=TOFU_EXEC;
     char url_baiducloud_root[LOCATION_LENGTH_EXTENDED];
     char access_key[AKSK_LENGTH]="";
     char secret_key[AKSK_LENGTH]="";
@@ -2876,12 +2876,12 @@ int baiducloud_cluster_init(char* cluster_id_input, char* workdir, char* crypto_
         insert_lines(filename_temp,"var.cluster_init_scripts",line_temp);*/
     }
     generate_tf_files(stackdir);
-    if(terraform_execution(tf_exec,"init",workdir,crypto_keyfile,0)!=0){
+    if(tofu_execution(tf_exec,"init",workdir,crypto_keyfile,0)!=0){
         return 5;
     }
-    if(terraform_execution(tf_exec,"apply",workdir,crypto_keyfile,1)!=0){
+    if(tofu_execution(tf_exec,"apply",workdir,crypto_keyfile,1)!=0){
         printf(GENERAL_BOLD "[ -INFO- ]" RESET_DISPLAY " Rolling back and exit now ...\n");
-        if(terraform_execution(tf_exec,"destroy",workdir,crypto_keyfile,1)==0){
+        if(tofu_execution(tf_exec,"destroy",workdir,crypto_keyfile,1)==0){
             delete_decrypted_files(workdir,crypto_keyfile);
             clear_if_failed(stackdir,confdir,vaultdir,3);
             printf(GENERAL_BOLD "[ -INFO- ]" RESET_DISPLAY " Successfully rolled back and destroyed the residual resources.\n");
@@ -2998,7 +2998,7 @@ int azure_cluster_init(char* cluster_id_input, char* workdir, char* crypto_keyfi
     char secret_file[FILENAME_LENGTH]="";
     char filename_temp[FILENAME_LENGTH]="";
     char user_passwords[FILENAME_LENGTH]="";
-    char* tf_exec=TERRAFORM_EXEC;
+    char* tf_exec=TOFU_EXEC;
     char url_azure_root[LOCATION_LENGTH_EXTENDED];
     char access_key[AKSK_LENGTH]="";
     char secret_key[AKSK_LENGTH]="";
@@ -3319,12 +3319,12 @@ int azure_cluster_init(char* cluster_id_input, char* workdir, char* crypto_keyfi
         insert_lines(filename_temp,"var.cluster_init_scripts",line_temp);*/
     }
     generate_tf_files(stackdir);
-    if(terraform_execution(tf_exec,"init",workdir,crypto_keyfile,0)!=0){
+    if(tofu_execution(tf_exec,"init",workdir,crypto_keyfile,0)!=0){
         return 5;
     }
-    if(terraform_execution(tf_exec,"apply",workdir,crypto_keyfile,1)!=0){
+    if(tofu_execution(tf_exec,"apply",workdir,crypto_keyfile,1)!=0){
         printf(GENERAL_BOLD "[ -INFO- ]" RESET_DISPLAY " Rolling back and exit now ...\n");
-        if(terraform_execution(tf_exec,"destroy",workdir,crypto_keyfile,1)==0){
+        if(tofu_execution(tf_exec,"destroy",workdir,crypto_keyfile,1)==0){
             delete_decrypted_files(workdir,crypto_keyfile);
             clear_if_failed(stackdir,confdir,vaultdir,3);
             printf(GENERAL_BOLD "[ -INFO- ]" RESET_DISPLAY " Successfully rolled back and destroyed the residual resources.\n");
@@ -3428,7 +3428,7 @@ int gcp_cluster_init(char* cluster_id_input, char* workdir, char* crypto_keyfile
     char conf_file[FILENAME_LENGTH]="";
     char filename_temp[FILENAME_LENGTH]="";
     char user_passwords[FILENAME_LENGTH]="";
-    char* tf_exec=TERRAFORM_EXEC;
+    char* tf_exec=TOFU_EXEC;
     char url_gcp_root[LOCATION_LENGTH_EXTENDED];
     char cloud_flag[16]="";
     int read_conf_flag=0;
@@ -3770,12 +3770,12 @@ int gcp_cluster_init(char* cluster_id_input, char* workdir, char* crypto_keyfile
         insert_lines(filename_temp,"var.cluster_init_scripts",line_temp);*/
     }
     generate_tf_files(stackdir);
-    if(terraform_execution(tf_exec,"init",workdir,crypto_keyfile,0)!=0){
+    if(tofu_execution(tf_exec,"init",workdir,crypto_keyfile,0)!=0){
         return 5;
     }
-    if(terraform_execution(tf_exec,"apply",workdir,crypto_keyfile,1)!=0){
+    if(tofu_execution(tf_exec,"apply",workdir,crypto_keyfile,1)!=0){
         printf(GENERAL_BOLD "[ -INFO- ]" RESET_DISPLAY " Rolling back and exit now ...\n");
-        if(terraform_execution(tf_exec,"destroy",workdir,crypto_keyfile,1)==0){
+        if(tofu_execution(tf_exec,"destroy",workdir,crypto_keyfile,1)==0){
             delete_decrypted_files(workdir,crypto_keyfile);
             clear_if_failed(stackdir,confdir,vaultdir,3);
             printf(GENERAL_BOLD "[ -INFO- ]" RESET_DISPLAY " Successfully rolled back and destroyed the residual resources.\n");

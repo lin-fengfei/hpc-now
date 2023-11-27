@@ -8,7 +8,7 @@
 #ifndef NOW_MACROS_H
 #define NOW_MACROS_H
 
-#define CORE_VERSION_CODE "0.2.1.0008"
+#define CORE_VERSION_CODE "0.2.1.0009"
 
 #ifdef _WIN32
 #define PATH_SLASH "\\"
@@ -27,7 +27,7 @@
 #define TF_LOCAL_PLUGINS "c:\\programdata\\hpc-now-tf\\"
 
 #define NOW_CRYPTO_EXEC "c:\\hpc-now\\utils\\now-crypto.exe"
-#define TERRAFORM_EXEC "c:\\hpc-now\\utils\\terraform.exe"
+#define TOFU_EXEC "c:\\hpc-now\\utils\\tofu.exe"
 #define HPCOPR_EXEC "C:\\hpc-now\\hpcopr.exe"
 
 #define DELETE_FILE_CMD "del /f /q /s"
@@ -91,7 +91,7 @@
 #define TF_LOCAL_PLUGINS "/usr/share/terraform/"
 
 #define NOW_CRYPTO_EXEC "/home/hpc-now/.bin/utils/now-crypto.exe"
-#define TERRAFORM_EXEC "/home/hpc-now/.bin/utils/terraform"
+#define TOFU_EXEC "/home/hpc-now/.bin/utils/tofu"
 #define HPCOPR_EXEC "/home/hpc-now/.bin/hpcopr"
 
 #define DELETE_FILE_CMD "rm -rf"
@@ -155,7 +155,7 @@
 #define TF_LOCAL_PLUGINS "/Library/Application Support/io.terraform/"
 
 #define NOW_CRYPTO_EXEC "/Users/hpc-now/.bin/utils/now-crypto.exe"
-#define TERRAFORM_EXEC "/Users/hpc-now/.bin/utils/terraform"
+#define TOFU_EXEC "/Users/hpc-now/.bin/utils/tofu"
 #define HPCOPR_EXEC "/Users/hpc-now/.bin/hpcopr"
 
 #define DELETE_FILE_CMD "rm -rf"
@@ -257,7 +257,7 @@
 #define MINIMUM_ADD_NODE_NUMBER 1
 #define MAXIMUM_ADD_USER_NUMBER 32
 #define MINIMUM_ADD_USER_NUNMBER 2
-/* This macro guarantees the maximum waiting time for terraform running */
+/* This macro guarantees the maximum waiting time for openTofu running */
 #define MAXIMUM_WAIT_TIME 600
 
 /* 
@@ -267,7 +267,7 @@
  * Otherwise the repository won't work properly
  */
 
-#define DEFAULT_URL_TF_ROOT "https://hpc-now-1308065454.cos.ap-guangzhou.myqcloud.com/terraform-root/"
+#define DEFAULT_URL_TF_ROOT "https://hpc-now-1308065454.cos.ap-guangzhou.myqcloud.com/tf-root/"
 #define DEFAULT_URL_CODE_ROOT "https://hpc-now-1308065454.cos.ap-guangzhou.myqcloud.com/infra-as-code/"
 #define DEFAULT_URL_SHELL_SCRIPTS "https://hpc-now-1308065454.cos.ap-guangzhou.myqcloud.com/scripts/"
 #define DEFAULT_URL_APPS_INST_SCRIPTS "https://hpc-now-1308065454.cos.ap-guangzhou.myqcloud.com/scripts/apps-install/"

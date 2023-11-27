@@ -148,7 +148,7 @@ void print_help(char* cmd_name){
         printf("+  Advanced - For developers:\n");
     }
     if(strcmp(cmd_name,"configloc")==0||strcmp(cmd_name,"all")==0){
-        printf("|  " HIGH_GREEN_BOLD "configloc" RESET_DISPLAY "   :~ Configure the locations for the terraform binaries, providers\n");
+        printf("|  " HIGH_GREEN_BOLD "configloc" RESET_DISPLAY "   :~ Configure the locations for the tofu binaries, providers\n");
         printf("|              :~ IaC templates and shell scripts.\n");
     }
     if(strcmp(cmd_name,"showloc")==0||strcmp(cmd_name,"all")==0){
@@ -376,14 +376,14 @@ void print_about(void){
     printf("| warranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.\n\n");
     printf("| This project is powered by many excellent free and open-source projects:\n");
     printf("|   1. GNU/Linux: maybe the most widely used software on this planet.\n");
-    printf("|   2. Terraform: a powerful platform for cloud resource orchestration.\n");
+    printf("|   2. openTofu : a powerful platform for cloud resource orchestration.\n");
     printf("|   3. GNOME    : a popular and user-friendly desktop environment for GNU/Linux.\n");
     printf("|   4. XRDP     : an open source Remote Desktop Program.\n");
     printf("|   5. SLURM    : an open source cluster management and job scheduling system.\n");
     printf("|   6. MUNGE    : an authentication service for creating and validating credentials.\n");
     printf("|      ......\n");
     printf("| Therefore, we also made this software public under the MIT License.\n");
-    printf("| Please check the source code here: https://gitee.com/zhenrong-wang/hpc-now/\n");
+    printf("| Please check the source code here: https://github.com/zhenrong-wang/hpc-now/\n");
     printf("| If you encounter any issues about this software, please feel free to contact us\n");
     printf("| via info@hpc-now.com or other channels.\n");
     printf("| Let's build this open source cloud HPC platform together!\n");
